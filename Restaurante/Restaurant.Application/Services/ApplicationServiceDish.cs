@@ -68,9 +68,18 @@ namespace Restaurant.Application.Services
                             Name = x.Name,
                             IdDish = x.IdDish,
                             Price = x.Price,
-                            IdRestaurant = x.Restaurant.IdRestaurant
+                            IdRestaurant = x.Restaurant.IdRestaurant,
+                            Restaurant = new RestaurantDto()
+                            {
+                                IdRestaurant = x.Restaurant.IdRestaurant,
+                                Name = x.Restaurant.Name
+                            }
                         }));
                         result.Result = true;
+                    }
+                    else
+                    {
+                        result.Messages.Add("Can't find dishes with the query informed.");
                     }
                 }                
             }

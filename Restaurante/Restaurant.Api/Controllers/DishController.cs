@@ -9,7 +9,7 @@ using Restaurant.Application.Interfaces;
 
 namespace Restaurant.Api.Controllers
 {
-    [EnableCors("MyPolicy")]
+    [EnableCors("CorsPolicy")]
     [Route("api/dish")]
     public class DishController : Controller
     {

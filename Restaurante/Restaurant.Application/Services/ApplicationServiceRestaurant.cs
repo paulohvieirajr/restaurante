@@ -67,6 +67,10 @@ namespace Restaurant.Application.Services
                         }));
                         result.Result = true;
                     }
+                    else
+                    {
+                        result.Messages.Add("Can't find dishes with the query informed.");
+                    }
                 }
             }
             catch (Exception ex)
