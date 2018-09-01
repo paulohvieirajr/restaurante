@@ -32,7 +32,7 @@ namespace Restaurant.Domain.Services
             var restaurant = _repository.GetByName(entity.Name);
             if(restaurant != null)
             {
-                AddNotification("Restaurant.Name", "This restaurant name exists in the database");
+                AddNotification("Restaurant.Name", "This restaurant's name exists in the system");
                 return false;
             }
             else
@@ -46,7 +46,7 @@ namespace Restaurant.Domain.Services
             var restaurant = _repository.GetByName(entity.Name);
             if (restaurant != null && restaurant.IdRestaurant != entity.IdRestaurant)
             {
-                AddNotification("Restaurant.Name", "This restaurant name exists in the database");
+                AddNotification("Restaurant.Name", "This restaurant name exists in the system");
                 return false;
             }
             else

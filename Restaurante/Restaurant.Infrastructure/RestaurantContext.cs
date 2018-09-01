@@ -29,7 +29,7 @@ namespace Restaurant.Infrastructure
             modelBuilder.ApplyConfiguration(new RestaurantMap());
         }
 
-        public DbSet<Dish> Dishes { get; set; }
+        public DbSet<Domain.Entities.Dish> Dishes { get; set; }
 
         public DbSet<Domain.Entities.Restaurant> Restaurants { get; set; }
     }

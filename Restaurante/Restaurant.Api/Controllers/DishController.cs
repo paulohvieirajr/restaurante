@@ -31,8 +31,7 @@ namespace Restaurant.Api.Controllers
         [Route("")]
         public ServiceResponse<List<DishDto>> List()
         {
-            return null;
-            //return _service.ListarComDescontos();
+            return _service.List();
         }
 
         /// <summary>
@@ -43,8 +42,7 @@ namespace Restaurant.Api.Controllers
         [Route("search")]
         public ServiceResponse<List<DishDto>> Search(string name)
         {
-            return null;
-            //return _service.ListarComDescontos();
+            return _service.Search(name);
         }
 
         /// <summary>
@@ -55,8 +53,7 @@ namespace Restaurant.Api.Controllers
         [Route("{id}")]
         public ServiceResponse<DishDto> Get(int id)
         {
-            return null;
-            //return _service.ListarComDescontos();
+            return _service.Get(id);
         }
 
         /// <summary>
@@ -66,7 +63,7 @@ namespace Restaurant.Api.Controllers
         [HttpPost]
         public ServiceResponse<bool> Insert([FromBody]DishDto dto)
         {
-            return null;
+            return _service.Insert(dto);
         }
 
         /// <summary>
@@ -76,7 +73,7 @@ namespace Restaurant.Api.Controllers
         [HttpPut]
         public ServiceResponse<bool> Update([FromBody]DishDto dto)
         {
-            return null;
+            return _service.Update(dto);
         }
 
         /// <summary>
@@ -86,7 +83,7 @@ namespace Restaurant.Api.Controllers
         [HttpDelete]
         public ServiceResponse<bool> Delete(int id)
         {
-            return null;
+            return _service.Delete(id);
         }
     }
 }

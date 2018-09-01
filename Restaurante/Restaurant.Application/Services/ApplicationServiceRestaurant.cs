@@ -1,4 +1,5 @@
-﻿using Restaurant.Application.Dto;
+﻿using Flunt.Notifications;
+using Restaurant.Application.Dto;
 using Restaurant.Application.Interfaces;
 using Restaurant.Domain.Interfaces;
 using Restaurant.Domain.Services;
@@ -49,16 +50,23 @@ namespace Restaurant.Application.Services
 
             try
             {
-                var restaurants = _service.Search(query);
-                if (restaurants.Any())
+                if (string.IsNullOrEmpty(query) || query.Length < 3)
                 {
-                    result.Object = new List<RestaurantDto>();
-                    restaurants.ForEach(x => result.Object.Add(new RestaurantDto()
+                    result.Messages.Add("Please, type 3 letters to search dishes");
+                }
+                else
+                {
+                    var restaurants = _service.Search(query);
+                    if (restaurants.Any())
                     {
-                        IdRestaurant = x.IdRestaurant,
-                        Name = x.Name
-                    }));
-                    result.Result = true;
+                        result.Object = new List<RestaurantDto>();
+                        restaurants.ForEach(x => result.Object.Add(new RestaurantDto()
+                        {
+                            IdRestaurant = x.IdRestaurant,
+                            Name = x.Name
+                        }));
+                        result.Result = true;
+                    }
                 }
             }
             catch (Exception ex)
@@ -89,7 +97,7 @@ namespace Restaurant.Application.Services
             }
             catch (Exception ex)
             {
-                result.Messages.Add("Problems when try to list restaurants: " + ex.Message);
+                result.Messages.Add("Problems when try to get the restaurant: " + ex.Message);
             }
 
             return result;
@@ -107,7 +115,7 @@ namespace Restaurant.Application.Services
                     result.Result = result.Object = _service.Insert(entity);
                     if (!result.Result)
                     {
-                        ((ServiceRestaurant)_service).Notifications
+                        ((Notifiable)_service).Notifications
                             .ToList()
                             .ForEach(x => result.Messages.Add(x.Message));
                     }
@@ -119,7 +127,7 @@ namespace Restaurant.Application.Services
             }
             catch (Exception ex)
             {
-                result.Messages.Add("Problems when try to list restaurants: " + ex.Message);
+                result.Messages.Add("Problems when try to insert the restaurant: " + ex.Message);
             }
 
             return result;
@@ -140,7 +148,7 @@ namespace Restaurant.Application.Services
                         result.Result = result.Object = _service.Update(entity);
                         if(!result.Result)
                         {
-                            ((ServiceRestaurant)_service).Notifications
+                            ((Notifiable)_service).Notifications
                                 .ToList()
                                 .ForEach(x => result.Messages.Add(x.Message));
                         }
@@ -157,7 +165,7 @@ namespace Restaurant.Application.Services
             }
             catch (Exception ex)
             {
-                result.Messages.Add("Problems when try to list restaurants: " + ex.Message);
+                result.Messages.Add("Problems when try to update the restaurant: " + ex.Message);
             }
 
             return result;
@@ -172,7 +180,7 @@ namespace Restaurant.Application.Services
                 result.Result = result.Object = _service.Delete(id);
                 if (!result.Result)
                 {
-                    ((ServiceRestaurant)_service).Notifications
+                    ((Notifiable)_service).Notifications
                         .ToList()
                         .ForEach(x => result.Messages.Add(x.Message));
                 }

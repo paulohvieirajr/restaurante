@@ -7,6 +7,7 @@ namespace Restaurant.Domain.Interfaces
 {
     public interface IServiceDish : IServiceBase<Dish>
     {
-
+        List<Domain.Entities.Dish> List();
+        List<Domain.Entities.Dish> Search(string query);
     }
 }

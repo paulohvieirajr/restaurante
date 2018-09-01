@@ -26,6 +26,8 @@ namespace Restaurant.Domain.Entities
             Name = name;
             Restaurant = restaurant;
             Price = price;
+            if(restaurant != null)
+                IdRestaurant = restaurant.IdRestaurant;
 
             AddValidations();
         }
@@ -61,14 +63,31 @@ namespace Restaurant.Domain.Entities
             AddValidations();
         }
 
+        public void Disable()
+        {
+            Status = false;
+        }
+
         private void AddValidations()
         {
             AddNotifications(new Contract()
                 .Requires()
-                .HasMinLen(Name, 3, "Dish.Name", "Por favor, informe um nome com pelo menos 3 caracteres")
-                .HasMaxLen(Name, 50, "Dish.Name", "Por favor, informe um nome com no máximo 40 caracteres"));
+                .HasMinLen(Name, 3, "Dish.Name", "Please, put a name with at least 3 characters")
+                .HasMaxLen(Name, 50, "Dish.Name", "Please, put a name with a maximum of 40 characters"));
 
-            AddNotifications(Restaurant, _Price);
+            AddNotifications(new Contract()
+                .Requires()
+                .IsTrue(ValidateRestaurant(), "Dish.Restaurant", "Please, put a validy restaurant"));
+
+            AddNotifications(_Price);
+
+            if (Restaurant != null)
+                AddNotifications(Restaurant);
+        }
+
+        private bool ValidateRestaurant()
+        {
+            return Restaurant != null;
         }
 
         #endregion

@@ -14,14 +14,14 @@ namespace Restaurant.Domain.ValueObjects
 
             AddNotifications(new Contract()
                 .Requires()
-                .IsTrue(Validar(), "Price.Value", "Por favor, informe um preço maior que zero."));
+                .IsLowerThan(0, value, "Price.Value", "Please, put the price value greater than zero"));
         }
 
         public decimal Value { get; private set; }
 
         private bool Validar()
         {
-            return Value <= 0;
+            return Value >= 0;
         }
     }
 }

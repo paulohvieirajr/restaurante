@@ -16,6 +16,13 @@ namespace Restaurant.Infrastructure.Repositories
             _context = dbContext;
         }
 
+        public override Domain.Entities.Restaurant Get(int id)
+        {
+            return (from r in _context.Restaurants
+                    where r.Status && r.IdRestaurant == id
+                    select r).FirstOrDefault();
+        }
+
         public List<Domain.Entities.Restaurant> List()
         {
             return (from r in _context.Restaurants

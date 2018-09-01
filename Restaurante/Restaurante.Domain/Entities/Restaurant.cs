@@ -49,8 +49,8 @@ namespace Restaurant.Domain.Entities
         {
             AddNotifications(new Contract()
                 .Requires()
-                .HasMinLen(Name, 3, "Restaurant.Name", "Por favor, informe um nome com pelo menos 3 caracteres")
-                .HasMaxLen(Name, 50, "Restaurant.Name", "Por favor, informe um nome com no máximo 50 caracteres"));
+                .HasMinLen(Name, 3, "Restaurant.Name", "Please, put a name with at least 3 characters")
+                .HasMaxLen(Name, 50, "Restaurant.Name", "Please, put a name with a maximum of 40 characters"));
         }
 
         #endregion
