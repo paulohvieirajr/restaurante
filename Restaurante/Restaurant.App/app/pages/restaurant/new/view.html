@@ -1,0 +1,30 @@
+﻿<div class="container-fluid margem-inferior" ng-init="vm.init();">
+        <div class="row baseSaudacao">
+            <div class="text-center sem-margem">
+                <span class="spSaudacao text-uppercase">New Restaurant</span>
+            </div>
+        </div>
+    </div>
+<div class="container">
+    
+    <div class="row">
+        <div class="form-group col-md-3" ng-show="vm.model.idRestaurant">
+            <label>Id</label>
+            <input type="text" class="form-control txt" ng-model="vm.model.idRestaurant" readonly>
+        </div>
+        <div class="form-group col-md-3">
+            <label>Name</label>
+            <input type="text" class="form-control txt" ng-model="vm.model.name">
+        </div>       
+    </div> 
+    <br/>
+    <br/>
+    <div class="row">
+        <div class="col-md-4">
+            <button class="btn btn-danger btn-block" style="margin-top: 21px" ng-click="vm.back();">Cancel</button>
+        </div>
+        <div class="col-md-4">
+            <button class="btn btn-primary btn-block" style="margin-top: 21px" ng-click="vm.save();">Save</button>
+        </div>
+    </div>   
+</div>
