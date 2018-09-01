@@ -1,4 +1,5 @@
-﻿using Restaurant.Domain.Interfaces;
+﻿using Flunt.Notifications;
+using Restaurant.Domain.Interfaces;
 using Restaurant.Domain.Repositories;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Text;
 
 namespace Restaurant.Domain.Services
 {
-    public abstract class ServiceBase<T> : IServiceBase<T>
+    public abstract class ServiceBase<T> : Notifiable, IServiceBase<T>
     {
         IRepositoryBase<T> _repositorio;
 

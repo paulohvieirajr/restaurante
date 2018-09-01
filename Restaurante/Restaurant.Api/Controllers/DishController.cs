@@ -40,7 +40,7 @@ namespace Restaurant.Api.Controllers
         /// </summary>
         /// <returns> List od Dishes</returns>
         [HttpGet]
-        [Route("")]
+        [Route("search")]
         public ServiceResponse<List<DishDto>> Search(string name)
         {
             return null;

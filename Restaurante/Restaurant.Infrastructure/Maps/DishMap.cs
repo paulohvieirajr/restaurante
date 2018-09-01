@@ -17,6 +17,7 @@ namespace Restaurant.Infrastructure.Maps
             // Columns
             builder.Property(x => x.Name).HasColumnName("Name").HasMaxLength(50).IsRequired();
             builder.Property(x => x.IdRestaurant).HasColumnName("IdRestaurant").IsRequired();
+            builder.Property(x => x.Status).HasColumnName("Status").IsRequired();
 
             // Relatioships
             builder

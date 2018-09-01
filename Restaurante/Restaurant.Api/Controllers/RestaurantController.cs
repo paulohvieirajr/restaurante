@@ -9,8 +9,8 @@ using Restaurant.Application.Interfaces;
 
 namespace Restaurant.Api.Controllers
 {
-    [EnableCors("MyPolicy")]
-    [Route("api/dish")]
+    [EnableCors("CorsPolicy")]
+    [Route("api/restaurant")]
     public class RestaurantController : Controller
     {
         private readonly IApplicationServiceRestaurant _service;
@@ -29,10 +29,9 @@ namespace Restaurant.Api.Controllers
         /// <returns> List of Restaurants</returns>
         [HttpGet]
         [Route("")]
-        public ServiceResponse<List<DishDto>> List()
+        public ServiceResponse<List<RestaurantDto>> List()
         {
-            return null;
-            //return _service.ListarComDescontos();
+            return _service.List();
         }
 
         /// <summary>
@@ -40,11 +39,10 @@ namespace Restaurant.Api.Controllers
         /// </summary>
         /// <returns> List of Restaurants</returns>
         [HttpGet]
-        [Route("")]
-        public ServiceResponse<List<DishDto>> Search(string name)
+        [Route("search")]
+        public ServiceResponse<List<RestaurantDto>> Search(string name)
         {
-            return null;
-            //return _service.ListarComDescontos();
+            return _service.Search(name);
         }
 
         /// <summary>
@@ -53,10 +51,9 @@ namespace Restaurant.Api.Controllers
         /// <returns> Restaurant</returns>
         [HttpGet]
         [Route("{id}")]
-        public ServiceResponse<DishDto> Get(int id)
+        public ServiceResponse<RestaurantDto> Get(int id)
         {
-            return null;
-            //return _service.ListarComDescontos();
+            return _service.Get(id);
         }
 
         /// <summary>
@@ -64,9 +61,9 @@ namespace Restaurant.Api.Controllers
         /// </summary>
         /// <returns> Boolean to confirm the operation</returns>
         [HttpPost]
-        public ServiceResponse<bool> Insert([FromBody]DishDto dto)
+        public ServiceResponse<bool> Insert([FromBody]RestaurantDto dto)
         {
-            return null;
+            return _service.Insert(dto);
         }
 
         /// <summary>
@@ -74,9 +71,9 @@ namespace Restaurant.Api.Controllers
         /// </summary>
         /// <returns> Boolean to confirm the operation</returns>
         [HttpPut]
-        public ServiceResponse<bool> Update([FromBody]DishDto dto)
+        public ServiceResponse<bool> Update([FromBody]RestaurantDto dto)
         {
-            return null;
+            return _service.Update(dto);
         }
 
         /// <summary>
@@ -86,7 +83,7 @@ namespace Restaurant.Api.Controllers
         [HttpDelete]
         public ServiceResponse<bool> Delete(int id)
         {
-            return null;
+            return _service.Delete(id);
         }
     }
 }

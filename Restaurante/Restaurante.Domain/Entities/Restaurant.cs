@@ -40,6 +40,11 @@ namespace Restaurant.Domain.Entities
             AddValidation();
         }
 
+        public void Disable()
+        {
+            this.Status = false;
+        }
+
         private void AddValidation()
         {
             AddNotifications(new Contract()

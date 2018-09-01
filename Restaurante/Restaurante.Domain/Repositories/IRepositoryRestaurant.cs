@@ -7,6 +7,8 @@ namespace Restaurant.Domain.Repositories
 {
     public interface IRepositoryRestaurant : IRepositoryBase<Domain.Entities.Restaurant>
     {
-
+        List<Entities.Restaurant> List();
+        List<Entities.Restaurant> Search(string query);
+        Domain.Entities.Restaurant GetByName(string name);
     }
 }

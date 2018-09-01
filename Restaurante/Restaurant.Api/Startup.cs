@@ -80,7 +80,7 @@ namespace Restaurant.Api
                 c.IncludeXmlComments(caminhoXmlDoc);
             });
 
-            services.AddCors(o => o.AddPolicy("MyPolicy", X =>
+            services.AddCors(o => o.AddPolicy("CorsPolicy", X =>
             {
                 X.AllowAnyOrigin()
                  .AllowAnyMethod()
@@ -115,7 +115,7 @@ namespace Restaurant.Api
                     "Restaurants and Dishes");
             });
 
-            app.UseCors("MyPolicy");
+            app.UseCors("CorsPolicy");
         }
     }
 }
