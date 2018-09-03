@@ -12,10 +12,12 @@ namespace Restaurant.Application.Services
     public class ApplicationServiceRestaurant : IApplicationServiceRestaurant
     {
         private readonly IServiceRestaurant _service;
+        private readonly IServiceDish _serviceDish;
 
-        public ApplicationServiceRestaurant(IServiceRestaurant service)
+        public ApplicationServiceRestaurant(IServiceRestaurant service, IServiceDish serviceDish)
         {
             _service = service;
+            _serviceDish = serviceDish;
         }
 
         public ServiceResponse<List<RestaurantDto>> List()
@@ -187,6 +189,10 @@ namespace Restaurant.Application.Services
                     ((Notifiable)_service).Notifications
                         .ToList()
                         .ForEach(x => result.Messages.Add(x.Message));
+                }
+                else
+                {
+                    _serviceDish.DeleteDishForRestaurants(id);
                 }
             }
             catch (Exception ex)

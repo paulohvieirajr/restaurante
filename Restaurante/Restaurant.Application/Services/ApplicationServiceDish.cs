@@ -29,13 +29,22 @@ namespace Restaurant.Application.Services
                 if (dishes.Any())
                 {
                     result.Object = new List<DishDto>();
-                    dishes.ForEach(x => result.Object.Add(new DishDto()
-                    {
-                        Name = x.Name,
-                        IdDish = x.IdDish,
-                        Price = x.Price,
-                        IdRestaurant = x.Restaurant.IdRestaurant,
-                    }));
+                    dishes.ForEach(x => {
+                        var restaurant = _serviceRestaurant.Get(x.IdRestaurant);
+
+                        result.Object.Add(new DishDto()
+                        {
+                            Name = x.Name,
+                            IdDish = x.IdDish,
+                            Price = x.Price,
+                            IdRestaurant = x.Restaurant.IdRestaurant,
+                            Restaurant = new RestaurantDto()
+                            {
+                                IdRestaurant = restaurant.IdRestaurant,
+                                Name = restaurant.Name
+                            }
+                        });
+                    });
                     result.Result = true;
                 }
             }
@@ -63,18 +72,23 @@ namespace Restaurant.Application.Services
                     if (dishes.Any())
                     {
                         result.Object = new List<DishDto>();
-                        dishes.ForEach(x => result.Object.Add(new DishDto()
-                        {
-                            Name = x.Name,
-                            IdDish = x.IdDish,
-                            Price = x.Price,
-                            IdRestaurant = x.Restaurant.IdRestaurant,
-                            Restaurant = new RestaurantDto()
+                        dishes.ForEach(x => {
+                            var restaurant = _serviceRestaurant.Get(x.IdRestaurant);
+
+                            result.Object.Add(new DishDto()
                             {
+                                Name = x.Name,
+                                IdDish = x.IdDish,
+                                Price = x.Price,
                                 IdRestaurant = x.Restaurant.IdRestaurant,
-                                Name = x.Restaurant.Name
-                            }
-                        }));
+                                Restaurant = new RestaurantDto()
+                                {
+                                    IdRestaurant = restaurant.IdRestaurant,
+                                    Name = restaurant.Name
+                                }
+                            });
+                        });
+
                         result.Result = true;
                     }
                     else

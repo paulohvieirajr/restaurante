@@ -68,5 +68,10 @@ namespace Restaurant.Domain.Services
                 return false;
             }
         }
+
+        public bool DeleteDishForRestaurants(int idRestaurant)
+        {
+            return _repository.DeleteDishForRestaurants(idRestaurant);
+        }
     }
 }

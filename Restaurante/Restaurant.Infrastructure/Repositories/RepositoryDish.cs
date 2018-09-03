@@ -33,6 +33,7 @@ namespace Restaurant.Infrastructure.Repositories
         public List<Dish> Search(string query)
         {
             return (from d in _context.Dishes
+                    join r in _context.Restaurants on d.IdRestaurant equals r.IdRestaurant
                     where d.Status && d.Name.Contains(query)
                     select d).ToList();
         }
@@ -42,6 +43,15 @@ namespace Restaurant.Infrastructure.Repositories
             return (from d in _context.Dishes
                     where d.Name == name && d.Status && d.IdRestaurant == idRestaurant
                     select d).FirstOrDefault();
+        }
+
+        public bool DeleteDishForRestaurants(int idRestaurant)
+        {
+            var dishes = _context.Dishes.Where(x => x.IdRestaurant == idRestaurant).ToList();
+
+            dishes.ForEach(x => x.Disable());
+
+            return _context.SaveChanges() > 0;
         }
     }
 }

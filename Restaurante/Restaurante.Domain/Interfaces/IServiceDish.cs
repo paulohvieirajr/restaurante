@@ -9,5 +9,6 @@ namespace Restaurant.Domain.Interfaces
     {
         List<Domain.Entities.Dish> List();
         List<Domain.Entities.Dish> Search(string query);
+        bool DeleteDishForRestaurants(int idRestaurant);
     }
 }

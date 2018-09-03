@@ -10,5 +10,6 @@ namespace Restaurant.Domain.Repositories
         List<Dish> List();
         List<Dish> Search(string query);
         Domain.Entities.Dish GetByName(string name, int idRestaurant);
+        bool DeleteDishForRestaurants(int idRestaurant);
     }
 }
