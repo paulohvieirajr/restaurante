@@ -13,6 +13,7 @@
         vm.search = search;
         vm.new = newRestaurant;
         vm.edit = edit;
+        vm.delete = deleteItem;
 
         function init() {
             try {
@@ -54,6 +55,28 @@
         function edit(id) {
             try {
                 $state.go(URLBASE + '/restaurant/edit', {id: id});
+            } catch (e) {
+                toastr.error(e, 'Error');
+            }
+        }
+
+        function deleteItem(id) {
+            try {
+                restaurantService.delete(id)
+                    .then(function (response) {
+                        if (!response.data.result) {
+                            angular.forEach(response.data.messages, function (message) {
+                                toastr.error(message, 'Error');
+                            });
+                            return;
+                        }
+
+                        toastr.success('Restaurant deleted.');
+                        vm.search();
+                    })
+                    .catch(function (e) {
+                        toastr.error('Could not delet the restaurant', 'Error');
+                    });
             } catch (e) {
                 toastr.error(e, 'Error');
             }

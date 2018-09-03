@@ -3,10 +3,11 @@
 
     angular.module('app').controller('dishNewController', controller);
 
-    controller.inject = ['$state', '$stateParams', 'URLBASE', 'dishService', 'restaurantService', 'toastr'];
+    controller.inject = ['$scope', '$state', '$stateParams', 'URLBASE', 'dishService', 'restaurantService', 'toastr'];
 
-    function controller($state, $stateParams, URLBASE, dishService, restaurantService, toastr) {
+    function controller($scope, $state, $stateParams, URLBASE, dishService, restaurantService, toastr) {
         var vm = this;
+        $scope.URLBASE = URLBASE;
 
         vm.model = {};
         vm.restaurants = [];
@@ -18,6 +19,8 @@
         function init() {
             try {
                 var id = $stateParams.id;
+                vm.text = id ? 'Edit' : 'New';
+
                 if(id) {
                     dishService.get(id)
                         .then(function(response) {
@@ -62,6 +65,21 @@
 
         function save() {
             try {
+                if(!vm.model.restaurant) {
+                    toastr.error('Please, select a restaurant');
+                    return;
+                }
+
+                if(!vm.model.name) {
+                    toastr.error('Please, put the dish name');
+                    return;
+                }
+
+                if(!vm.model.price) {
+                    toastr.error('Please, put the dish price');
+                    return;
+                }
+
                 vm.model.idRestaurant = vm.model.restaurant.idRestaurant;
                 
                 dishService.save(vm.model)

@@ -10,9 +10,11 @@
         return {
             search: search,
             get: get,
+            list: list,
             save: save,
             insert: insert,
-            update: update
+            update: update,
+            delete: deleteItem
         };
 
         function search(query) {
@@ -21,6 +23,10 @@
 
         function get(id) {
             return $http.get(URLAPI + 'api/dish/' + id);
+        }
+
+        function list() {
+            return $http.get(URLAPI + 'api/dish');
         }
 
         function save(data) {
@@ -36,6 +42,10 @@
 
         function update(data) {
             return $http.put(URLAPI + 'api/dish', data);
+        }
+
+        function deleteItem(id) {
+            return $http.delete(URLAPI + 'api/dish', {params: {id: id}});
         }
     }
 })();

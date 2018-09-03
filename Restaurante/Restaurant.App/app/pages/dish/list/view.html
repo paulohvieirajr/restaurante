@@ -6,7 +6,14 @@
     </div>
 </div>
     <div class="container">
-    
+        <div class="row">
+            <div class="form-group col-md-12">
+                 <ol class="breadcrumb">
+                    <li><a ui-sref="{{URLBASE}}/home">Home</a></li>
+                    <li class="active">Dish</li>
+                </ol>
+            </div>
+        </div>
         <div class="row">
             <div class="form-group col-md-4">
                 <label>Name</label>
@@ -37,7 +44,10 @@
                             <td>{{::dish.restaurant.name}}</td>
                             <td>{{::dish.name}}</td>
                             <td>{{::dish.price}}</td>
-                            <td ng-click="vm.edit(dish.idDish);">Edit</td>
+                            <td>
+                                    <span title="Edit dish" class="glyphicon glyphicon-pencil" ng-click="vm.edit(dish.idDish);"></span> 
+                                    <span title="Delete dish" class="glyphicon glyphicon-trash" ng-click="vm.delete(dish.idDish);"></span>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

@@ -1,12 +1,20 @@
 ﻿<div class="container-fluid margem-inferior" ng-init="vm.init();">
         <div class="row baseSaudacao">
             <div class="text-center sem-margem">
-                <span class="spSaudacao text-uppercase">New Restaurant</span>
+                <span class="spSaudacao text-uppercase">{{vm.text}} Restaurant</span>
             </div>
         </div>
     </div>
 <div class="container">
-    
+    <div class="row">
+        <div class="form-group col-md-12">
+            <ol class="breadcrumb">
+                <li><a ui-sref="{{URLBASE}}/home">Home</a></li>
+                <li><a ui-sref="{{URLBASE}}/restaurant">Restaurants</a></li>
+                <li class="active">{{vm.text}}</li>
+            </ol>
+        </div>
+    </div>
     <div class="row">
         <div class="form-group col-md-3" ng-show="vm.model.idRestaurant">
             <label>Id</label>
@@ -15,16 +23,12 @@
         <div class="form-group col-md-3">
             <label>Name</label>
             <input type="text" class="form-control txt" ng-model="vm.model.name">
-        </div>       
-    </div> 
-    <br/>
-    <br/>
-    <div class="row">
-        <div class="col-md-4">
+        </div>     
+        <div class="col-md-3">
             <button class="btn btn-danger btn-block" style="margin-top: 21px" ng-click="vm.back();">Cancel</button>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <button class="btn btn-primary btn-block" style="margin-top: 21px" ng-click="vm.save();">Save</button>
-        </div>
-    </div>   
+        </div>  
+    </div> 
 </div>

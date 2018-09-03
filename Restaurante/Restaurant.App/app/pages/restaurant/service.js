@@ -12,7 +12,8 @@
             get: get,
             save: save,
             insert: insert,
-            update: update
+            update: update,
+            delete: deleteItem
         };
 
         function search(query) {
@@ -40,6 +41,10 @@
 
         function update(data) {
             return $http.put(URLAPI + 'api/restaurant', data);
+        }
+
+        function deleteItem(id) {
+            return $http.delete(URLAPI + 'api/restaurant', {params: {id: id}});
         }
     }
 })();

@@ -1,35 +1,47 @@
 ﻿<div class="container-fluid margem-inferior" ng-init="vm.init();">
         <div class="row baseSaudacao">
             <div class="text-center sem-margem">
-                <span class="spSaudacao text-uppercase">New Dish</span>
+                <span class="spSaudacao text-uppercase">{{vm.text}} Dish</span>
             </div>
         </div>
     </div>
-<div class="container">    
+<div class="container"> 
+    <div class="row">
+        <div class="form-group col-md-12">
+            <ol class="breadcrumb">
+                <li><a ui-sref="{{URLBASE}}/home">Home</a></li>
+                <li><a ui-sref="{{URLBASE}}/dish">Dishes</a></li>
+                <li class="active">{{vm.text}}</li>
+            </ol>
+        </div>
+    </div>   
     <div class="row">
         <div class="form-group col-md-3" ng-show="vm.model.idDish">
             <label>Id</label>
             <input type="text" class="form-control txt" ng-model="vm.model.idDish" readonly>
         </div>
-        <div class="form-group col-md-3">
+        <div class="form-group col-md-4">
             <label for="restaurants">Restaurants</label>
-            <select ng-model='vm.model.restaurant' ng-options='restaurant.name for restaurant in vm.restaurants'></select>
+            <select class="form-control" ng-model='vm.model.restaurant' ng-options='restaurant.name for restaurant in vm.restaurants'></select>
         </div>
-        <div class="form-group col-md-3">
+        <div class="form-group col-md-4">
             <label for="name">Name</label>
             <input name="name" type="text" class="form-control txt" ng-model="vm.model.name">
         </div>   
-        <div class="form-group col-md-3">
+        <div class="form-group col-md-4">
             <label for="price">Price</label>
             <input name="price" type="text" class="form-control txt" ng-model="vm.model.price">
         </div>        
     </div> 
     <br/>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
             <button class="btn btn-danger btn-block" style="margin-top: 21px" ng-click="vm.back();">Cancel</button>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
+
+        </div>
+        <div class="col-md-3">
             <button class="btn btn-primary btn-block" style="margin-top: 21px" ng-click="vm.save();">Save</button>
         </div>
     </div>   

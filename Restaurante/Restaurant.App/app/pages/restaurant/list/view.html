@@ -6,7 +6,14 @@
     </div>
 </div>
 <div class="container">
-
+    <div class="row">
+        <div class="form-group col-md-12">
+            <ol class="breadcrumb">
+                <li><a ui-sref="{{URLBASE}}/home">Home</a></li>
+                <li class="active">Restaurants</li>
+            </ol>
+        </div>
+    </div>
     <div class="row">
         <div class="form-group col-md-4">
             <label>Name</label>
@@ -33,7 +40,10 @@
                     <tr ng-repeat="restaurant in vm.restaurants">
                         <td>{{::restaurant.idRestaurant}}</td>
                         <td>{{::restaurant.name}}</td>
-                        <td ng-click="vm.edit(restaurant.idRestaurant);">Edit</td>
+                        <td>
+                            <span title="Edit restaurant" class="glyphicon glyphicon-pencil" ng-click="vm.edit(restaurant.idRestaurant);"></span> 
+                            <span title="Delete restaurant" class="glyphicon glyphicon-trash" ng-click="vm.delete(restaurant.idRestaurant);"></span>
+                        </td>
                     </tr>
                 </tbody>
             </table>
